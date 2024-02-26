@@ -2,6 +2,7 @@ using EcommerceAPI.Features.Users.IoC;
 using EcommerceAPI.Features.Users.Services.Create;
 using EcommerceAPI.Features.Users.Services.Delete;
 using EcommerceAPI.Features.Users.Services.Edit;
+using EcommerceAPI.IoC;
 using EcommerceAPI.Shared.Repos;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,9 +18,10 @@ builder.Services.AddCors(options => options.AddPolicy("AllowCors", builder =>
 
 builder.Services.AddControllers();
 
+builder.Services.AddInfrastructure(builder.Configuration);
+
 //builder.Services.AddScoped<IBaseRepository<T>, BaseRepository<T>>();
 // Add user feature.
-builder.Services.AddUserInfrastructure();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
